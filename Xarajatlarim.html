@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Xarajatlarim</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+  <style>
+    :root {
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      --bg: #e8e9ff;
+      --surface: #fff;
+      --ink: #1a1465;
+      --muted: #58549c;
+      --line: #1a1465;
+      --sh: #1a1465;
+      --field: #f3f3ff;
+      --track: #fff;
+      --yel: #ffd23f;
+      --pink: #ff5d8f;
+      --grn: #3ddc97;
+      --fix: #1a1465;
+      --inc: #0a7a4b;
+      color-scheme: light
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #120e33;
+        --surface: #1d1750;
+        --ink: #f0edff;
+        --muted: #a9a4e0;
+        --line: #7f78e6;
+        --sh: #000;
+        --field: #14103b;
+        --track: #14103b;
+        --inc: #5ee0a5;
+        color-scheme: dark
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --inc: #5ee0a5;
+      --bg: #120e33;
+      --surface: #1d1750;
+      --ink: #f0edff;
+      --muted: #a9a4e0;
+      --line: #7f78e6;
+      --sh: #000;
+      --field: #14103b;
+      --track: #14103b;
+      color-scheme: dark
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.5 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif
+    }
+
+    main {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px 16px 48px
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+      color: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--pink);
+      outline-offset: 2px
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 800;
+      margin: 0 0 14px;
+      letter-spacing: -.02em;
+      line-height: 1.1
+    }
+
+    h2 {
+      font-size: 17px;
+      font-weight: 800;
+      margin: 0 0 12px
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px
+    }
+
+    .tabs button {
+      border: 2px solid var(--line);
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 9px;
+      font-weight: 800
+    }
+
+    .tabs button[aria-selected="true"] {
+      background: var(--ink);
+      color: var(--bg)
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-weight: 800
+    }
+
+    .nav button {
+      width: 38px;
+      height: 38px;
+      border: 2px solid var(--line);
+      background: var(--surface);
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1
+    }
+
+    .nav button:disabled {
+      opacity: .35;
+      cursor: default
+    }
+
+    .box {
+      background: var(--surface);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 4px 4px 0 var(--sh);
+      padding: 16px;
+      margin-top: 18px
+    }
+
+    .hero {
+      background: var(--yel);
+      color: var(--fix);
+      border: 2px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 6px 6px 0 var(--sh);
+      padding: 20px 18px 16px
+    }
+
+    .hero p {
+      margin: 0
+    }
+
+    .lbl {
+      font-weight: 600
+    }
+
+    .two {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      margin: 0 0 12px
+    }
+
+    .two b {
+      font-weight: 800
+    }
+
+    .inc {
+      color: var(--inc)
+    }
+
+    .seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px
+    }
+
+    .seg button {
+      border: 2px solid var(--line);
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 7px;
+      font-weight: 800
+    }
+
+    .seg button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--bg)
+    }
+
+    .big {
+      font-size: clamp(40px, 13vw, 60px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      margin: 2px 0 8px !important
+    }
+
+    .big small {
+      font-size: .36em;
+      font-weight: 600;
+      letter-spacing: 0
+    }
+
+    .track {
+      height: 16px;
+      border: 2px solid var(--fix);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden
+    }
+
+    #fill {
+      height: 100%;
+      width: 0;
+      background: var(--fix);
+      transition: width .4s
+    }
+
+    #hint {
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 8px !important;
+      min-height: 21px
+    }
+
+    .lim {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 14px
+    }
+
+    .lim input {
+      flex: 1;
+      min-width: 0;
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid var(--fix);
+      padding: 3px 0;
+      color: var(--fix);
+      border-radius: 0
+    }
+
+    .lim input::placeholder {
+      color: var(--fix);
+      opacity: .55
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    .f {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    .f.w {
+      grid-column: 1/-1
+    }
+
+    input.i,
+    .f input,
+    .f select {
+      background: var(--field);
+      color: var(--ink);
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 16px;
+      width: 100%
+    }
+
+    .btn {
+      background: var(--pink);
+      color: var(--fix);
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 800;
+      box-shadow: 3px 3px 0 var(--sh)
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--sh)
+    }
+
+    .btn.alt {
+      background: var(--surface);
+      color: var(--ink)
+    }
+
+    .row .btn {
+      grid-column: 1/-1
+    }
+
+    .b {
+      margin-bottom: 12px
+    }
+
+    .b:last-child {
+      margin-bottom: 0
+    }
+
+    .b div {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px
+    }
+
+    .b i {
+      display: block;
+      height: 10px;
+      border: 2px solid var(--line);
+      border-radius: 5px;
+      background: var(--track);
+      margin-top: 5px;
+      overflow: hidden
+    }
+
+    .b i u {
+      display: block;
+      height: 100%;
+      background: var(--pink)
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 0;
+      border-top: 2px dashed var(--line)
+    }
+
+    li:first-child {
+      border-top: 0;
+      padding-top: 0
+    }
+
+    li .n {
+      min-width: 0
+    }
+
+    li .n b {
+      display: block;
+      font-weight: 600;
+      overflow-wrap: anywhere
+    }
+
+    li .n span,
+    .muted {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    li .r {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      font-weight: 800
+    }
+
+    li .r button {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--line);
+      background: var(--surface);
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 15px
+    }
+
+    .intro {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15px
+    }
+
+    #jform {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px
+    }
+
+    #bmsg {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+      min-height: 21px
+    }
+
+    .pod {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 10px;
+      margin: 6px 0 4px
+    }
+
+    .pd {
+      flex: 1;
+      max-width: 130px;
+      text-align: center;
+      min-width: 0
+    }
+
+    .pd .nm {
+      display: block;
+      font-weight: 800;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .pd b {
+      display: block;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 6px
+    }
+
+    .blk {
+      border: 2px solid var(--line);
+      border-bottom: 0;
+      border-radius: 12px 12px 0 0;
+      color: var(--fix);
+      font-size: 34px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .p1 .blk {
+      height: 104px;
+      background: var(--yel)
+    }
+
+    .p2 .blk {
+      height: 76px;
+      background: var(--pink)
+    }
+
+    .p3 .blk {
+      height: 56px;
+      background: var(--grn)
+    }
+
+    .rk {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%
+    }
+
+    .rk .no {
+      width: 28px;
+      font-weight: 800;
+      color: var(--muted)
+    }
+
+    .rk .nm {
+      flex: 1;
+      min-width: 0;
+      font-weight: 600;
+      overflow-wrap: anywhere
+    }
+
+    .me {
+      background: var(--yel);
+      color: var(--fix);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin: 0 -10px
+    }
+
+    .me .no {
+      color: var(--fix)
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      #fill {
+        transition: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Foyda hisobi</h1>
+    <div class="tabs" role="tablist">
+      <button id="tb0" role="tab" aria-selected="true">Hisob</button>
+      <button id="tb1" role="tab" aria-selected="false">Reyting</button>
+    </div>
+
+    <p class="muted" id="sync" style="margin:-6px 0 14px"></p>
+    <div id="s0">
+      <div class="nav"><button id="prev" aria-label="Oldingi oy">‹</button><span id="mon"></span><button id="next"
+          aria-label="Keyingi oy">›</button></div>
+      <section class="hero">
+        <p class="lbl" id="lbl">Shu oy foydasi</p>
+        <p class="big"><span id="tot">0</span> <small>so’m</small></p>
+        <div class="two"><span>Daromad: <b id="inc">0</b></span><span>Xarajat: <b id="exp">0</b></span></div>
+        <div class="track">
+          <div id="fill"></div>
+        </div>
+        <p id="hint"></p>
+        <label class="lim">Xarajat limiti <input id="lim" inputmode="numeric" placeholder="masalan, 3 000 000"
+            autocomplete="off"> <small>so’m</small></label>
+      </section>
+
+      <section class="box">
+        <h2>Yangi yozuv</h2>
+        <div class="seg"><button id="ty0" aria-pressed="true">Xarajat</button><button id="ty1"
+            aria-pressed="false">Daromad</button></div>
+        <div class="row">
+          <label class="f">Summa (so’m)<input id="amt" inputmode="numeric" placeholder="50 000"
+              autocomplete="off"></label>
+          <label class="f">Toifa<select id="cat"></select></label>
+          <label class="f w">Izoh (ixtiyoriy)<input id="note" maxlength="60" placeholder="Masalan, non va sut"
+              autocomplete="off"></label>
+          <button class="btn" id="add">Xarajat qo’shish</button>
+        </div>
+      </section>
+
+      <section class="box" id="bc" hidden>
+        <h2>Xarajat toifalari</h2>
+        <div id="bars"></div>
+      </section>
+
+      <section class="box">
+        <h2>Yozuvlar ro’yxati</h2>
+        <ul id="list"></ul>
+      </section>
+
+      <section class="box">
+        <h2>Ma’lumotlar</h2>
+        <div class="row">
+          <button class="btn alt" id="bk" hidden>Zaxira nusxa olish</button>
+          <label class="btn alt" style="display:block;text-align:center;cursor:pointer">Zaxiradan tiklash<input
+              type="file" id="rf" accept=".json,application/json" hidden></label>
+        </div>
+        <p class="muted" id="dmsg" style="margin:10px 0 0;min-height:20px"></p>
+      </section>
+    </div>
+
+    <div id="s1" hidden>
+      <p class="intro">Bu oy eng ko’p foyda (daromad minus xarajat) ko’rgan odamlar tepada turadi. Qo’shilsangiz,
+        taxallusingiz va oylik foydangiz summasi boshqalarga ko’rinadi. Alohida xarajatlaringiz ko’rinmaydi.</p>
+      <section class="box" style="margin-top:0">
+        <div id="jform">
+          <input class="i" id="nick" maxlength="16" placeholder="Taxallusingiz" autocomplete="off"
+            aria-label="Taxallus">
+          <button class="btn" id="join">Qo’shilish</button>
+        </div>
+        <div id="jme" hidden>
+          <p style="margin:0 0 10px"><b id="myn"></b>, siz reytingdasiz. <span id="mys"></span></p>
+          <button class="btn alt" id="leave">Reytingdan chiqish</button>
+        </div>
+        <p id="bmsg"></p>
+      </section>
+      <section class="box">
+        <h2>Foyda reytingi</h2>
+        <div class="pod" id="pod"></div>
+        <ul id="rank"></ul>
+        <p class="empty" id="rempty" hidden>Hali hech kim qo’shilmagan. Birinchi bo’ling.</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    var CATS = ["Oziq-ovqat", "Transport", "Uy-joy", "Ko’ngilochar", "Sog’liq", "Boshqa"];
+    var MON = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"];
+    var INC = ["Maosh", "Savdo", "Qo’shimcha ish", "Sovg’a", "Boshqa"]; var ty = "e";
+    var KEY = "xarajatlar-v1";
+    var st = { items: [], budget: 0, bt: 0, del: [] };
+    function norm(p) { return { items: Array.isArray(p && p.items) ? p.items : [], budget: +(p && p.budget) || 0, bt: +(p && p.bt) || 0, del: Array.isArray(p && p.del) ? p.del : [] } }
+    try { var raw = localStorage.getItem(KEY); if (raw) st = norm(JSON.parse(raw)) } catch (e) { }
+    function merge(a, b) {
+      var del = {}, seen = {}, items = [];
+      a.del.concat(b.del).forEach(function (i) { del[i] = 1 });
+      a.items.concat(b.items).forEach(function (x) { if (!del[x.id] && !seen[x.id]) { seen[x.id] = 1; items.push(x) } });
+      var w = b.bt > a.bt ? b : a;
+      return { items: items, budget: w.budget, bt: w.bt, del: Object.keys(del).map(Number) };
+    }
+    function canon(s) { return JSON.stringify({ i: s.items.map(function (x) { return x.id }).sort(), b: s.budget, t: s.bt, d: s.del.slice().sort() }) }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(st)) } catch (e) { } push() }
+    var now = new Date(), thisM = now.getFullYear() * 12 + now.getMonth(), cur = thisM;
+    function $(id) { return document.getElementById(id) }
+    function fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") }
+    function num(s) { return parseInt(String(s).replace(/\D/g, ""), 10) || 0 }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] }) }
+    function mOf(d) { return +d.slice(0, 4) * 12 + (+d.slice(5, 7) - 1) }
+    function pad(n) { return n < 10 ? "0" + n : "" + n }
+    function liveFmt(el) { var v = num(el.value); el.value = v ? fmt(v) : "" }
+    function sumBy(m, inc) { return st.items.reduce(function (s, x) { return mOf(x.d) === m && (x.t === "i") === inc ? s + x.a : s }, 0) }
+    function spent(m) { return sumBy(m, false) }
+    function earned(m) { return sumBy(m, true) }
+    function score() { return earned(thisM) - spent(thisM) }
+    function money(n) { return (n < 0 ? "−" : "") + fmt(Math.abs(n)) }
+    function short(n) { var a = Math.abs(n), s = n < 0 ? "−" : ""; if (a >= 1e6) return s + (a / 1e6).toFixed(1).replace(/\.0$/, "").replace(".", ",") + " mln"; if (a >= 1e3) return s + Math.round(a / 1e3) + " ming"; return s + a }
+
+    function fillCats() { $("cat").innerHTML = (ty === "i" ? INC : CATS).map(function (c) { return "<option>" + c + "</option>" }).join("") }
+    fillCats();
+    if (st.budget) $("lim").value = fmt(st.budget);
+
+    function render() {
+      var items = st.items.filter(function (x) { return mOf(x.d) === cur }).sort(function (a, b) { return a.d < b.d ? 1 : a.d > b.d ? -1 : b.id - a.id });
+      var ex = spent(cur), tot = earned(cur) - ex; $("inc").textContent = fmt(earned(cur)); $("exp").textContent = fmt(ex);
+      $("mon").textContent = MON[cur % 12] + " " + Math.floor(cur / 12);
+      $("lbl").textContent = cur === thisM ? "Shu oy foydasi" : "Bu oydagi foyda";
+      $("tot").textContent = money(tot);
+      $("next").disabled = cur >= thisM;
+      var pct = 0, hint = "Xarajat limiti qo’ying, qancha qolganini ko’rasiz.";
+      if (st.budget > 0) {
+        pct = Math.min(ex / st.budget, 1) * 100;
+        hint = ex > st.budget ? "Limitdan " + fmt(ex - st.budget) + " so’m oshib ketdi." : "Limitgacha " + fmt(st.budget - ex) + " so’m qoldi.";
+      }
+      $("fill").style.width = pct + "%";
+      $("hint").textContent = hint;
+
+      var by = {}; items.forEach(function (x) { if (x.t !== "i") by[x.c] = (by[x.c] || 0) + x.a });
+      var keys = Object.keys(by).sort(function (a, b) { return by[b] - by[a] });
+      $("bc").hidden = !keys.length;
+      $("bars").innerHTML = keys.map(function (k) {
+        return '<div class="b"><div><span>' + esc(k) + '</span><b>' + fmt(by[k]) + ' so’m</b></div><i><u style="width:' + (by[k] / by[keys[0]] * 100) + '%"></u></i></div>'
+      }).join("");
+
+      $("list").innerHTML = items.length ? items.map(function (x) {
+        return '<li><div class="n"><b>' + esc(x.n || x.c) + '</b><span>' + esc(x.c) + ', ' + (+x.d.slice(8)) + '-' + MON[+x.d.slice(5, 7) - 1].toLowerCase() + '</span></div>' +
+          '<div class="r' + (x.t === "i" ? ' inc' : '') + '">' + (x.t === "i" ? "+" : "") + fmt(x.a) + ' so’m<button data-id="' + x.id + '" aria-label="O’chirish">✕</button></div></li>'
+      }).join("") : '<li class="empty">Bu oyda hali yozuv yo’q. Birinchisini yuqoridan qo’shing.</li>';
+      renderBoard(); sync();
+    }
+
+    /* Reyting */
+    var db = null, uid = null, bst = "load", board = [], sendT = null, lastSent = null;
+    function me() { for (var i = 0; i < board.length; i++)if (board[i].id === uid) return board[i]; return null }
+    function renderBoard() {
+      var m = me(), ready = bst === "ready", s = score();
+      var msg = { load: "Reyting yuklanmoqda…", slow: "Reyting hali yuklanmadi. Ulanishni tekshiring.", off: "Reyting ishlashi uchun claude.ai hisobingiz bilan kiring.", err: "Reytingni o’qib bo’lmadi. Keyinroq urinib ko’ring." }[bst] || "";
+      if (ready && $("bmsg").dataset.k !== "x") msg = "";
+      if (!ready || $("bmsg").dataset.k !== "x") $("bmsg").textContent = msg;
+      $("jform").hidden = !ready || !!m;
+      $("jme").hidden = !ready || !m;
+      if (m) { $("myn").textContent = m.name; $("mys").textContent = "Bu oy foydangiz: " + money(s) + " so’m." }
+      var rows = board.filter(function (x) { return x.month === thisM && x.profit !== null }).sort(function (a, b) { return b.profit - a.profit });
+      $("rempty").hidden = !ready || rows.length > 0;
+      var top = rows.slice(0, 3), ord = top.length === 3 ? [1, 0, 2] : top.length === 2 ? [1, 0] : [0];
+      $("pod").innerHTML = ord.map(function (i) {
+        var x = top[i];
+        return '<div class="pd p' + (i + 1) + '"><span class="nm">' + esc(x.name) + '</span><b>' + short(x.profit) + '</b><div class="blk">' + (i + 1) + '</div></div>'
+      }).join("");
+      $("rank").innerHTML = rows.slice(3).map(function (x, i) {
+        return '<li><div class="rk' + (x.id === uid ? ' me' : '') + '"><span class="no">' + (i + 4) + '</span><span class="nm">' + esc(x.name) + '</span><b>' + money(x.profit) + ' so’m</b></div></li>'
+      }).join("");
+    }
+    function sync() {
+      var m = me(); if (!db || !m) return;
+      clearTimeout(sendT);
+      sendT = setTimeout(function () {
+        var s = score();
+        var k = m.name + ":" + s + ":" + thisM; if (k === lastSent) return; lastSent = k;
+        db.collection("board").doc(uid).set({ name: m.name, profit: s, month: thisM, ts: Date.now() }).catch(function () { lastSent = null });
+      }, 800);
+    }
+    function note(t) { var el = $("bmsg"); el.dataset.k = "x"; el.textContent = t; setTimeout(function () { el.dataset.k = ""; renderBoard() }, 4000) }
+    $("join").onclick = function () {
+      var n = $("nick").value.trim().slice(0, 16), s = score();
+      if (n.length < 2) { $("nick").focus(); return }
+
+      lastSent = n + ":" + s + ":" + thisM;
+      db.collection("board").doc(uid).set({ name: n, profit: s, month: thisM, ts: Date.now() }).then(function () { $("nick").value = "" }).catch(function () { lastSent = null; note("Reytingga yozib bo’lmadi. Sahifada yozish huquqingiz bo’lmasligi mumkin.") });
+    };
+    $("leave").onclick = function () { lastSent = null; db.collection("board").doc(uid).delete().catch(function () { note("Reytingdan chiqib bo’lmadi. Qayta urinib ko’ring.") }) };
+
+    window.addEventListener("load", async function () {
+      try {
+        try { dl = await claude.use("downloads"); $("bk").hidden = !dl } catch (e) { }
+        var u = await claude.use("user"), d = await claude.use("db");
+        var id = u ? await u.id() : null;
+        if (!d || !id) { bst = "off"; renderBoard(); return }
+        db = d; uid = id; watchMine();
+        setTimeout(function () { if (bst === "load") { bst = "slow"; renderBoard() } }, 10000);
+        db.collection("board").limit(200).onSnapshot(function (snap) {
+          board = snap.docs.map(function (d) { var x = d.data() || {}; return { id: d.id, name: String(x.name || "?"), profit: typeof x.profit === "number" ? x.profit : null, month: x.month } });
+          bst = "ready"; renderBoard(); sync();
+        }, function () { bst = "err"; renderBoard() });
+      } catch (e) { bst = "off"; renderBoard() }
+    });
+
+    /* Shaxsiy saqlash va zaxira */
+    var dl = null, mineRef = null, pushT = null;
+    function setSync(s) { var t = { off: "Faqat shu qurilmada saqlanmoqda. Zaxira nusxa olib qo’ying.", wait: "Hisobingizga saqlanmoqda…", ok: "Hisobingizga saqlandi. Boshqa qurilmadan ham ko’rasiz.", err: "Hisobga saqlab bo’lmadi, ma’lumot shu qurilmada turibdi." }; $("sync").textContent = t[s] }
+    function dmsg(t) { $("dmsg").textContent = t }
+    function push() {
+      if (!mineRef) return;
+      setSync("wait"); clearTimeout(pushT);
+      pushT = setTimeout(function () {
+        mineRef.set({ items: st.items, budget: st.budget, bt: st.bt, del: st.del }).then(function () { setSync("ok") }).catch(function () { setSync("err") });
+      }, 1000);
+    }
+    function watchMine() {
+      mineRef = db.collection("data/users/" + uid).doc("expenses");
+      mineRef.onSnapshot(function (snap) {
+        var r = norm(snap.exists ? snap.data() : null);
+        var m = merge(st, r);
+        var cl = canon(m) !== canon(st), cr = canon(m) !== canon(r);
+        if (cl) {
+          st = m; try { localStorage.setItem(KEY, JSON.stringify(st)) } catch (e) { }
+          if (document.activeElement !== $("lim")) $("lim").value = st.budget ? fmt(st.budget) : "";
+          render();
+        }
+        if (cr) push(); else setSync("ok");
+      }, function () { setSync("err") });
+    }
+    $("bk").onclick = function () {
+      if (!dl) return;
+      dl.save({ filename: "xarajatlar-zaxira.json", data: JSON.stringify({ v: 1, items: st.items, budget: st.budget, bt: st.bt, del: st.del }) })
+        .then(function () { dmsg("Zaxira nusxa saqlandi.") })
+        .catch(function (e) { if (!e || e.code !== "declined") dmsg("Zaxira nusxani saqlab bo’lmadi.") });
+    };
+    $("rf").onchange = function () {
+      var f = this.files && this.files[0], inp = this; if (!f) return;
+      var r = new FileReader();
+      r.onload = function () {
+        try {
+          var p = JSON.parse(r.result); if (!p || !Array.isArray(p.items)) throw 0;
+          var b = norm(p);
+          b.items = b.items.filter(function (x) { return x && typeof x.id === "number" && +x.a > 0 && /^\d{4}-\d{2}-\d{2}$/.test(String(x.d)) }).map(function (x) { var o = { id: x.id, a: Math.round(+x.a), c: String(x.c || "Boshqa").slice(0, 30), n: String(x.n || "").slice(0, 60), d: String(x.d) }; if (x.t === "i") o.t = "i"; return o });
+          var before = st.items.length;
+          st = merge(st, b);
+          $("lim").value = st.budget ? fmt(st.budget) : "";
+          save(); render();
+          dmsg("Tiklandi: " + (st.items.length - before) + " ta yangi xarajat qo’shildi.");
+        } catch (e) { dmsg("Bu fayl zaxira nusxa emas yoki buzilgan.") }
+        inp.value = "";
+      };
+      r.readAsText(f);
+    };
+
+    /* Hisob */
+    function add() {
+      var a = num($("amt").value);
+      if (!a) { $("amt").focus(); return }
+      var d = new Date();
+      var it = { id: Date.now(), a: a, c: $("cat").value, n: $("note").value.trim(), d: d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) }; if (ty === "i") it.t = "i"; st.items.push(it);
+      save(); cur = thisM;
+      $("amt").value = ""; $("note").value = ""; $("amt").focus();
+      render();
+    }
+    $("add").onclick = add;
+    ["amt", "note"].forEach(function (id) { $(id).addEventListener("keydown", function (e) { if (e.key === "Enter") add() }) });
+    $("amt").addEventListener("input", function () { liveFmt(this) });
+    $("lim").addEventListener("input", function () { liveFmt(this); st.budget = num(this.value); st.bt = Date.now(); save(); render() });
+    $("prev").onclick = function () { cur--; render() };
+    $("next").onclick = function () { if (cur < thisM) { cur++; render() } };
+    $("list").addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-id]"); if (!b) return;
+      var id = +b.getAttribute("data-id");
+      st.items = st.items.filter(function (x) { return x.id !== id }); st.del.push(id); save(); render();
+    });
+    function setTy(t) { ty = t; fillCats(); $("ty0").setAttribute("aria-pressed", t === "e"); $("ty1").setAttribute("aria-pressed", t === "i"); $("add").textContent = t === "e" ? "Xarajat qo’shish" : "Daromad qo’shish" }
+    $("ty0").onclick = function () { setTy("e") }; $("ty1").onclick = function () { setTy("i") };
+    function tab(n) {
+      $("s0").hidden = n !== 0; $("s1").hidden = n !== 1;
+      $("tb0").setAttribute("aria-selected", n === 0); $("tb1").setAttribute("aria-selected", n === 1);
+    }
+    $("tb0").onclick = function () { tab(0) }; $("tb1").onclick = function () { tab(1) };
+    setSync("off");
+    render();
+  </script>
+</body>
+
+</html>
